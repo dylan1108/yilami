@@ -80,7 +80,8 @@
 		pay,
 		mark,
 		status,
-		parentNumber )
+		parentNumber,regTime,lastLogintime
+		)
 		values (#{userName},
 		#{userPassword},
 		#{userNickname}, #{userRealname},
@@ -97,7 +98,10 @@
 		#{bankAccountName}, #{bankAccount}, #{accountType},
 		#{pay},
 		#{mark},#{status},
-		#{parentNumber})
+		#{parentNumber},
+		current_timestamp(),
+		current_timestamp()
+		)
 	</insert>
 
 	<delete id="deleteById" parameterType="String">

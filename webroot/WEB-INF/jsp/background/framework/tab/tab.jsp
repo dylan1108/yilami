@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body bgcolor="#353c44">
 <div>
-<center style="color: white;font-weight: 800;font-size: 30px;" >尊贵的：<span style="color: yellow;font-weight: 800;">${admin.userName}${admin.superName}</span>　　您好！！！！ 欢迎进入蓝缘管理系统:</center>
+<center style="color: white;font-weight: 800;font-size: 30px;" >尊贵的：<span style="color: yellow;font-weight: 800;">${userSession.userNickname}</span>　　您好！！！！ 欢迎进入易纳米管理系统:</center>
 <dir style="color: white;font-size: 20px;">
 你的身份是: <span style="color: yellow;">
  <c:if test="${admin.level eq '0'}">超级管理员</c:if> 

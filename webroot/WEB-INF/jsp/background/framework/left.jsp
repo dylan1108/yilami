@@ -141,8 +141,8 @@ body {
 																<td width="64%">
 																	<div align="center">
 																		<font
-																			style="height: 1; font-size: 9pt; color: #bfdbeb; filter: glow(color =   #1070a3, strength =   1)">版本2013-12
-																			V1.0 </font>
+																			style="height: 1; font-size: 9pt; color: #bfdbeb; filter: glow(color =   #1070a3, strength =   1)">版本2015-04
+																			V0.0.1 </font>
 																	</div>
 																</td>
 																<td width="18%">

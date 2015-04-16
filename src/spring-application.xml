@@ -129,6 +129,7 @@
 	<context:component-scan base-package="com.yilami.service" />
 	<context:component-scan base-package="com.yilami.log" />
 	<context:component-scan base-package="com.yilami.security" />
+	<context:component-scan base-package="com.yilami.task" />
 	<!-- 隐式地向 Spring 容器注册 -->
 	<context:annotation-config />
 </beans>
