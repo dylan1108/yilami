@@ -3,19 +3,14 @@
 	<property name="project-name" value="${ant.project.name}" />
 	<property name="version" value="0.0.1" />
 	<property name="src.dir" value="src" />
-	<property name="resource.dir" value="resource" />
+	<property name="resources.dir" value="resources" />
 	<property name="build.Env" value="dev" />
-	<!-- build  base settting -->
 	<property name="tomcat.lib.dir" value="Embedded/tomcat/lib" />
 	<property name="main.lib" value="webroot/WEB-INF/lib" />
 	<property name="dist.dir" value="dist" />
-	<property name="build.dir" value="build" />
-	<property name="build.class.dir" value="${build.dir}/classes" />
+	<property name="build.class.dir" value="webroot/WEB-INF/classes" />
 	<!-- checkstyle configuration -->
 	<property name="checkstyle.config" value="checkstyle.xml" />
-	<!--
-	<taskdef resource="checkstyletask.properties" classpath="${lib.dir}/checkstyle-all-3.1.jar" />
-	-->
 	<!-- classpath -->
 	<path id="main-classpath">
 		<fileset dir="${main.lib}">
@@ -25,9 +20,13 @@
 
 	<!-- init target -->
 	<target name="init">
-		<mkdir dir="${build.dir}" />
 		<mkdir dir="${build.class.dir}" />
-		<mkdir dir="${dist.dir}" />
+		<copy todir="${build.class.dir}" overwrite="true">  
+            <fileset dir="${resources.dir}"/>
+			<fileset dir="${src.dir}">
+              <include name="**/entity/*.xml" />
+			</fileset>
+         </copy> 
 		<tstamp />
 		<echo message="begin ant task at : ${DSTAMP}-${TSTAMP}">
 		</echo>
@@ -36,7 +35,6 @@
 	<target name="all" depends="jar" />
 	<!-- 编译源文件 -->
 	<target name="compile" depends="init">
-		<mkdir dir="${build.class.dir}" />
 		<javac destdir="${build.class.dir}" includeantruntime="on" deprecation="on"  encoding="UTF-8">
 			<src path="${src.dir}" />
 			<classpath refid="main-classpath" />
@@ -51,25 +49,29 @@
     </path>
 	
 	<target name="jar" depends="compile">
-	        <pathconvert property="mf.classpath" pathsep=" ">
-	            <mapper>
-	                <chainedmapper>
-	                    <!-- jar包文件只留文件名，去掉目录信息 -->
-	                    <flattenmapper/>
-	                    <!-- add lib/ prefix -->
-	                    <globmapper from="*" to="${tomcat.lib.dir}/*"/>
-	                </chainedmapper>
-	            </mapper>
-	            <path refid="lib-classpath"/>
-	         </pathconvert>
-	        <!-- jar文件的输出路径 -->
-	        <jar destfile="${project-name}-${version}.jar" basedir="${build.class.dir}">
-	        	<include name="**/tomcat/*.class" />
-	            <manifest>
-	                <attribute name="Main-class" value="com.yilami.tomcat.EmbeddedTomcat"/>
-	                <attribute name="Class-Path" value="${mf.classpath}"/>
-	            </manifest>
-	        </jar>
-	    </target>
-	
+		<pathconvert property="mf.classpath" pathsep=" ">
+			<mapper>
+				<chainedmapper>
+					<!-- jar包文件只留文件名，去掉目录信息 -->
+					<flattenmapper/>
+					<!-- add lib/ prefix -->
+					<globmapper from="*" to="${tomcat.lib.dir}/*"/>
+				</chainedmapper>
+			</mapper>
+			<path refid="lib-classpath"/>
+		 </pathconvert>
+		<!-- jar文件的输出路径 -->
+		<jar destfile="${project-name}-${version}.jar" basedir="${build.class.dir}">
+			<include name="**/tomcat/*.class" />
+			<manifest>
+				<attribute name="Main-class" value="com.yilami.tomcat.EmbeddedTomcat"/>
+				<attribute name="Class-Path" value="${mf.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="clean">
+		<delete dir="${build.class.dir}"/>
+		<delete file="${project-name}-${version}.jar" />
+	</target> 
 </project>
