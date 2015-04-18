@@ -35,7 +35,7 @@
 	<target name="all" depends="jar" />
 	<!-- 编译源文件 -->
 	<target name="compile" depends="init">
-		<javac destdir="${build.class.dir}" includeantruntime="on" deprecation="on"  encoding="UTF-8">
+		<javac destdir="${build.class.dir}" includeantruntime="on" deprecation="on"  encoding="UTF-8" debug="on">
 			<src path="${src.dir}" />
 			<classpath refid="main-classpath" />
 		</javac>
