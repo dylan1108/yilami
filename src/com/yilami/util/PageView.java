@@ -1,4 +1,4 @@
-﻿package com.yilami.util;
+package com.yilami.util;
 
 import java.util.List;
 

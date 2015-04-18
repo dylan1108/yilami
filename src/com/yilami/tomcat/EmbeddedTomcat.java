@@ -11,7 +11,7 @@ import org.apache.catalina.startup.Embedded;
 
 public class EmbeddedTomcat {  
     private static String CONTEXT_PATH = "/yilami";  
-    private static String PROJECT_PATH = "K:\\workstation\\yilami";
+    private static String PROJECT_PATH = "K:\\workspace\\yilami\\trunk\\";
     		//System.getProperty("user.dir");  
     private static String WEB_APP_PATH = PROJECT_PATH + File.separatorChar + "webroot";  
     private static String TOMCAT_HOME = PROJECT_PATH + File.separatorChar + "Embedded" + File.separatorChar + "tomcat";  

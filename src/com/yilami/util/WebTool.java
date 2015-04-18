@@ -1,4 +1,4 @@
-﻿package com.yilami.util;
+package com.yilami.util;
 /**
  * 这是一个分页工具
  * 主要用于显示页码
